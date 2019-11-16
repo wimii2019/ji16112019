@@ -111,20 +111,33 @@ function wypelnij( start, stop, krok){
 
 function wartoscReki(n){
   let wartosc = 0;
+  let iloscA = 0;
   n.forEach(function (e) {
-    let tempFigura = e.toUpperCase()
-    console.log(e);
-    if(tempFigura === 'W' || tempFigura === 'D' || tempFigura === 'K'){
-      wartosc += parseInt(10)
-    }
-    else if(parseInt(e) === NaN){
-
-    }
-    else {
-      console.log(e);
+    if (typeof e === 'number'){
       wartosc += parseInt(e)
     }
+    else {
+      let tempFigura = e.toUpperCase()
+      if(tempFigura === 'W' || tempFigura === 'D' || tempFigura === 'K'){
+        wartosc += parseInt(10)
+      }
+      else if(tempFigura === 'A'){
+        iloscA +=1
+      }
+      else{
+
+      }
+    }
   })
+  if(iloscA>0){
+    if (wartosc>21) {
+      wartosc+= iloscA*11
+    }
+    else {
+      wartosc += iloscA*1
+    }
+  }
+
   if(wartosc>21){
     return 'FURA';
   }
@@ -147,7 +160,7 @@ console.log('Zadanie 5')
 console.log(cacheWynikowCzyPierwsza);
 
 console.log('Zadanie 6');
-console.log(wartoscReki(['D',10,5,'D']));
+console.log(wartoscReki(['A',5]));
 
 console.log('Zadanie 7');
 console.log(filtrowanie([1,2,null,false,'',7,99]));
