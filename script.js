@@ -1,7 +1,7 @@
 
 //var x = 15;
 
-const cacheWynikow = []
+let cacheWynikowCzyPierwsza = new Map();
 let pozycja = 0;
 //zadanie 1
 function foo(x){
@@ -20,7 +20,7 @@ function foo(x){
 }
 
 //zadanie 2
-function trojkatPascala(n) {
+function triPascal(n) {
     let tab = {};
     for(let row = 0; row < n; row++) {
         tab[row] = [];
@@ -39,17 +39,20 @@ function trojkatPascala(n) {
 function czyPierwsza(n)
   {
     console.log('czy pierwsza dla: '+n)
-    let y=n
-    for(var p=2;p<n;p++)
-      if(y%p==0)
-      {
-        cacheWynikow[pozycja] = false
-        pozycja+=1
-        return false
-      }
-      cacheWynikow[pozycja] = true
-      pozycja+=1
-    return true
+    if(cacheWynikowCzyPierwsza.get(n) === undefined){
+      let y=n
+      for(var p=2;p<n;p++)
+        if(y%p==0)
+        {
+          cacheWynikowCzyPierwsza.set(n,false)
+          return false
+        }
+        cacheWynikowCzyPierwsza.set(n,true)
+      return true
+    }
+    else {
+     return cacheWynikowCzyPierwsza.get(n);
+    }
   }
 
 function filtrowanie(n) {
@@ -65,19 +68,56 @@ function filtrowanie(n) {
   })
 }
 
+function mapowanieNaDlugoscZnakow(n){
+  return n.map(function (e) {
+    console.log(e);
+    return e.length;
+  });
+}
+
+function znajdowanieNajczestszegoElementu(n){
+  let najwiekszyLicznik = 0;
+  let najczestszyObiekt = null;
+
+  let tempMap = new Map()
+  n.forEach(function(e){
+    if (tempMap.get(e)===undefined) {
+      tempMap.set(e,1)
+    }
+    else {
+      let temp =tempMap.get(e)
+      tempMap.set(e,temp +=1)
+    }
+  })
+  for (var [key, value] of tempMap.entries()) {
+    if(najwiekszyLicznik<value){
+      najczestszyObiekt=key;
+      najwiekszyLicznik=value;
+    }
+  }
+  return [najczestszyObiekt,tempMap.get(najczestszyObiekt)];
+}
+
 
 console.log('Zadanie 1')
 foo(15)
 
 console.log('Zadanie 2')
-console.log(trojkatPascala(5))
+console.log(triPascal(10))
 
 console.log('Zadanie 4')
 console.log(czyPierwsza(23))
 console.log(czyPierwsza(6))
 
 console.log('Zadanie 5')
-console.log(cacheWynikow);
+console.log(cacheWynikowCzyPierwsza);
 
-console.log('Zadanie 6');
+
+console.log('Zadanie 7');
 console.log(filtrowanie([1,2,null,false,'',7,99]));
+
+console.log('Zadanie 9');
+console.log(mapowanieNaDlugoscZnakow(['raz','imie','rower']));
+
+console.log('Zadanie 8');
+console.log(znajdowanieNajczestszegoElementu([1,2,2,4,4,4,5,null,null,null,null,null]));
