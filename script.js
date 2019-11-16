@@ -109,6 +109,29 @@ function wypelnij( start, stop, krok){
   return rezultat
 }
 
+function wartoscReki(n){
+  let wartosc = 0;
+  n.forEach(function (e) {
+    let tempFigura = e.toUpperCase()
+    console.log(e);
+    if(tempFigura === 'W' || tempFigura === 'D' || tempFigura === 'K'){
+      wartosc += parseInt(10)
+    }
+    else if(parseInt(e) === NaN){
+
+    }
+    else {
+      console.log(e);
+      wartosc += parseInt(e)
+    }
+  })
+  if(wartosc>21){
+    return 'FURA';
+  }
+  else {
+    return wartosc;
+  }
+}
 
 console.log('Zadanie 1')
 foo(15)
@@ -122,6 +145,9 @@ console.log(czyPierwsza(6))
 
 console.log('Zadanie 5')
 console.log(cacheWynikowCzyPierwsza);
+
+console.log('Zadanie 6');
+console.log(wartoscReki(['D',10,5,'D']));
 
 console.log('Zadanie 7');
 console.log(filtrowanie([1,2,null,false,'',7,99]));
