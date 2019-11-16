@@ -98,6 +98,17 @@ function znajdowanieNajczestszegoElementu(n){
   return [najczestszyObiekt,tempMap.get(najczestszyObiekt)];
 }
 
+function wypelnij( start, stop, krok){
+  let rezultat = []
+  let wartosc = start
+
+  while(wartosc<=stop){
+    rezultat.push(wartosc)
+    wartosc+=krok
+  }
+  return rezultat
+}
+
 
 console.log('Zadanie 1')
 foo(15)
@@ -112,12 +123,14 @@ console.log(czyPierwsza(6))
 console.log('Zadanie 5')
 console.log(cacheWynikowCzyPierwsza);
 
-
 console.log('Zadanie 7');
 console.log(filtrowanie([1,2,null,false,'',7,99]));
+
+console.log('Zadanie 8');
+console.log(znajdowanieNajczestszegoElementu([1,2,2,4,4,4,5,null,null,null,null,null]));
 
 console.log('Zadanie 9');
 console.log(mapowanieNaDlugoscZnakow(['raz','imie','rower']));
 
-console.log('Zadanie 8');
-console.log(znajdowanieNajczestszegoElementu([1,2,2,4,4,4,5,null,null,null,null,null]));
+console.log('Zadanie 10')
+console.log(wypelnij(1,15,2));
